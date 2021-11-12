@@ -86,7 +86,7 @@ class Iso8601RepeatingInterval {
 			cursor = this._start.clone().add(this._duration.times(index))
 			/// add current date to array
 			momentDates.push(cursor)
-		} while (cursor.isBefore(date))
+		} while (cursor.isSameOrBefore(this._end))
 
 		/// return date array
 		return momentDates
