@@ -110,3 +110,12 @@ describe('reading iso 8601 string with recurrence', () => {
     })
   })
 })
+
+describe('reading iso 8601 dates', () => {
+  it('should return correct dates', () => {
+    const interval = makeInterval('R/2017-01-01/P3M')
+
+    console.debug(interval.dates())
+
+  })
+})
