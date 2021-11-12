@@ -74,7 +74,7 @@ class Iso8601RepeatingInterval {
 
 	/// return date list from repeating interval
 	dates() {
-		momentDates = []
+		let momentDates = []
 
 		/// start index and cursor
 		let index = 0
