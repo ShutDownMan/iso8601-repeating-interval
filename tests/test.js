@@ -1,7 +1,7 @@
 const demand = require('must')
 const moment = require('moment')
 
-const makeInterval = require('../index')
+const makeInterval = require('../src/index')
 
 demand.prototype.sameDateAs = function (expected) {
   expected = moment(expected)
@@ -9,7 +9,7 @@ demand.prototype.sameDateAs = function (expected) {
   return this
 }
 
-describe('reading iso 8601 string without recurence', () => {
+describe('reading iso 8601 string without recurrence', () => {
   it('should read a simple date', () => {
     const interval = makeInterval('2017-01-01')
 
@@ -29,7 +29,7 @@ describe('reading iso 8601 string without recurence', () => {
       demand(result.index).must.equal(0)
     })
 
-    it('should return undefined for after', () => {
+    it('should return undefined for first after', () => {
       const interval = makeInterval('2017-01-01')
       const date = moment('2018-01-01')
 
@@ -40,7 +40,7 @@ describe('reading iso 8601 string without recurence', () => {
   })
 })
 
-describe('reading iso 8601 string with recurence', () => {
+describe('reading iso 8601 string with recurrence', () => {
   it('should read a simple forward repeating interval', () => {
     const interval = makeInterval('R/2017-01-01/P3M')
 
