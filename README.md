@@ -21,15 +21,5 @@ console.log(interval.firstAfter('2017-06-05'))
 //}
 ```
 
-## Rational
-I really like https://github.com/enriched/repeating-interval but it handles months in a way I don't like.
-A month is converted to a fix duration of 30 days which means ```R/2017-01-15/P1M``` returns the following dates:
-```
-2017-01-15,2017-02-14,2017-03-16
-```
-I.e. the day of the month changes depending on month length.
-
-This package returns as follows:
-```
-2017-01-15,2017-02-15,2017-03-15
-```
+# Rational
+I needed a way to get all available dates given a repeating interval
