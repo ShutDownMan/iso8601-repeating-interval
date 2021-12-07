@@ -113,9 +113,25 @@ describe('reading iso 8601 string with recurrence', () => {
 
 describe('reading iso 8601 dates', () => {
   it('should return correct dates', () => {
-    const interval = makeInterval('R/2017-01-01/P3M')
+    const interval = makeInterval('R15/2017-01-01/P3M')
+
+    // console.debug(interval)
 
     console.debug(interval.dates())
+
+  })
+})
+
+describe('reading iso 8601 index dates', () => {
+  it('should return correct dates', () => {
+    const interval = makeInterval('R15/2017-01-01/P3M')
+
+    // console.debug(interval)
+
+    console.debug(interval.get(0))
+    console.debug(interval.get(1))
+    console.debug(interval.get(14))
+    console.debug(interval.get(35))
 
   })
 })

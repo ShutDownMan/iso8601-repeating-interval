@@ -48,17 +48,20 @@ function readRepeatingIso8601String(iso8601String) {
 	return data
 }
 
-class Iso8601RepeatingInterval {
+class Iso8601RepeatingInterval extends Array {
 	constructor(repeatCount, start, end, duration) {
+		super()
+
 		this._repeatCount = repeatCount
 		this._start = start
 		this._end = end
 		this._duration = duration
+
 	}
 
 	firstAfter(date) {
 		date = moment(date)
-		if (this._end && date.isAfter(this._end)) return null
+		if (this._end && date.isAfter(this._end)) return { index: undefined, date: undefined }
 		if (this._start && date.isSameOrBefore(this._start)) return { index: 0, date: this._start.clone() }
 
 		let index = 0
@@ -77,19 +80,28 @@ class Iso8601RepeatingInterval {
 		let momentDates = []
 
 		/// start index and cursor
-		let index = 0
 		let cursor = this._start.clone()
 
+		if(!this._repeatCount) return null
+
 		/// loop through dates
-		do {
-			index++
+		for (let index = 0; index < this._repeatCount; ++index) {
 			cursor = this._start.clone().add(this._duration.times(index))
 			/// add current date to array
 			momentDates.push(cursor)
-		} while (cursor.isSameOrBefore(this._end))
+		}
 
 		/// return date array
 		return momentDates
+	}
+
+	get(idx) {
+		console.debug(idx)
+
+		if (idx < this._repeatCount)
+			return this._start.clone().add(this._duration.times(idx))
+
+		return null
 	}
 }
 
